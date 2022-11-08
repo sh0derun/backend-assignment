@@ -11,4 +11,9 @@ export const mutation: Resolvers<Context>['Mutation'] = {
         username: input.username ?? undefined,
       },
     }),
+  deleteUser: async (_parent, { id }, ctx) => {
+    return await ctx.prisma.user.delete({
+      where:{ id }
+    }) ? {success:true} : {success:false};
+  }
 }
