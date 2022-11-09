@@ -3,6 +3,11 @@ import { Context } from '../../../libs/context'
 
 export const query: Resolvers<Context>['Query'] = {
   lists: async (_parent, _args, ctx) => ctx.prisma.list.findMany(),
+  listsWithTasks: async (_parent, _args, ctx) => ctx.prisma.list.findMany({
+    include:{
+      tasks: true
+    }
+  }),
   list:  async (_parent, { id }, ctx) => ctx.prisma.list.findFirst({
     where:{id}
   })

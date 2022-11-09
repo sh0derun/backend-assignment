@@ -8,10 +8,24 @@ export const typeDefs = gql`
     creator: User
   }
 
+  type ListwithTasks {
+    id: Int!
+    title: String!
+    creator: User
+    tasks: [Task!]
+  }
+
   type User {
     id: ID
     username: String
     lists: [List!]
+  }
+
+  type Task {
+    id: Int!
+    title: String!
+    completed: Boolean
+    position: Int 
   }
 
   input CreateListInput {
@@ -29,6 +43,7 @@ export const typeDefs = gql`
 
   type Query {
     lists: [List!]!
+    listsWithTasks: [ListwithTasks!]!
     list(id: Int!): List
   }
 
